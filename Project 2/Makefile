@@ -1,19 +1,20 @@
-all: hash.o spellcheck.o spellcheck.out
+useHeap.exe: useHeap.o heap.o hash.o
+	g++ -o useHeap.exe useHeap.o heap.o hash.o
 
-spellcheck.out: spellcheck.o hash.o
-	g++ -o spellcheck.out spellcheck.o hash.o
+useHeap.o: useHeap.cpp
+	g++ -c useHeap.cpp
 
-spellcheck.o:
-	g++ -c spellcheck.cpp
+heap.o: heap.cpp heap.h
+	g++ -c heap.cpp
 
-hash.o:
+hash.o: hash.cpp hash.h
 	g++ -c hash.cpp
 
 debug:
-	g++ -g -o spellDebug.out spellcheck.cpp hash.cpp
+	g++ -g -o useHeapDebug.exe useHeap.cpp heap.cpp hash.cpp
 
 clean:
-	rm -f *.out *.o *.stackdump *~
+	rm -f *.exe *.o *.stackdump *~
 
 backup:
 	test -d backups || mkdir backups

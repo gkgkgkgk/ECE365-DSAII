@@ -26,7 +26,7 @@ int hashTable::insert(const std::string &key, void *pv)
 
     int index = this->hash(key);
 
-    while (this->data[index].isOccupied && !this->data[index].isDeleted)
+    while (this->data[index].isOccupied)
     {
         if (this->data[index].key == key)
         {
