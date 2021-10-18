@@ -8,7 +8,7 @@ using namespace std;
 heap::heap(int capacity)
 {
     this->capacity = capacity;
-    this->data = vector<heap ::node>(capacity);
+    this->data = vector<heap ::node>(capacity + 1);
     this->map = hashTable(capacity);
 }
 
