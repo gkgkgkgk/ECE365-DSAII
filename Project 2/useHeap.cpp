@@ -39,100 +39,117 @@ void getInteger(string message, int &ref)
 
 int main()
 {
-    int capacity = 0;
-    int option;
-    string stringTmp;
-    int key, id;
-    int retVal;
+    heap h(10);
+    h.insert("a", 10);
+    h.insert("b", 13);
+    h.insert("c", 8);
+    h.insert("d", 11);
+    h.insert("e", 18);
+    h.insert("f", 1);
+    h.insert("g", 9);
+    h.insert("h", 15);
+    h.print();
+    h.deleteMin();
+    cout << "delete!" << endl;
+    h.print();
+    h.setKey("c", 20);
+    cout << "key set!" << endl;
+    h.print();
+    return 0;
+    // int capacity = 0;
+    // int option;
+    // string stringTmp;
+    // int key, id;
+    // int retVal;
 
-    // Have user choose capacity for binary heap
-    getInteger("Choose a capacity for the binary heap: ", capacity);
+    // // Have user choose capacity for binary heap
+    // getInteger("Choose a capacity for the binary heap: ", capacity);
 
-    // Create the heap
-    heap myHeap1(capacity);
+    // // Create the heap
+    // heap myHeap1(capacity);
 
-    while (1)
-    {
-        cout << "\nOptions:\n";
-        cout << "1 - Insert a new item into the binary heap\n";
-        cout << "2 - Set the key of a specified item\n";
-        cout << "3 - Delete a specified item\n";
-        cout << "4 - Perform a deleteMin\n";
-        cout << "5 - Quit\n";
+    // while (1)
+    // {
+    //     cout << "\nOptions:\n";
+    //     cout << "1 - Insert a new item into the binary heap\n";
+    //     cout << "2 - Set the key of a specified item\n";
+    //     cout << "3 - Delete a specified item\n";
+    //     cout << "4 - Perform a deleteMin\n";
+    //     cout << "5 - Quit\n";
 
-        // Have the user choose an option
-        getInteger("Choose an option: ", option);
-        switch (option)
-        {
+    //     // Have the user choose an option
+    //     getInteger("Choose an option: ", option);
+    //     switch (option)
+    //     {
 
-        case 1:
-            // Get data to insert into heap from the user and insert it
+    //     case 1:
+    //         // Get data to insert into heap from the user and insert it
 
-            cout << "Enter an id string (to insert): ";
-            getline(cin, stringTmp);
+    //         cout << "Enter an id string (to insert): ";
+    //         getline(cin, stringTmp);
 
-            getInteger("Enter an associated integer key: ", key);
+    //         getInteger("Enter an associated integer key: ", key);
 
-            retVal = myHeap1.insert(stringTmp, key);
+    //         retVal = myHeap1.insert(stringTmp, key);
 
-            cout << "\nCall to 'insert' returned: " << retVal << "\n";
+    //         cout << "\nCall to 'insert' returned: " << retVal << "\n";
 
-            break;
+    //         break;
 
-        case 2:
-            // Get id string and new key from user and change the key
+    //     case 2:
+    //         // Get id string and new key from user and change the key
 
-            cout << "Enter an id string (to change its key): ";
-            getline(cin, stringTmp);
+    //         cout << "Enter an id string (to change its key): ";
+    //         getline(cin, stringTmp);
 
-            getInteger("Enter an associated integer key: ", key);
+    //         getInteger("Enter an associated integer key: ", key);
 
-            retVal = myHeap1.setKey(stringTmp, key);
-            cout << "\nCall to 'setKey' returned: " << retVal << "\n";
+    //         retVal = myHeap1.setKey(stringTmp, key);
+    //         cout << "\nCall to 'setKey' returned: " << retVal << "\n";
 
-            break;
+    //         break;
 
-        case 3:
-            // Get id string from user and delete it from the heap
+    //     case 3:
+    //         // Get id string from user and delete it from the heap
 
-            cout << "Enter an id string (to delete): ";
-            getline(cin, stringTmp);
+    //         cout << "Enter an id string (to delete): ";
+    //         getline(cin, stringTmp);
 
-            retVal = myHeap1.remove(stringTmp, &key);
-            cout << "\nCall to 'delete' returned: " << retVal << "\n";
+    //         retVal = myHeap1.remove(stringTmp, &key);
+    //         cout << "\nCall to 'delete' returned: " << retVal << "\n";
 
-            if (retVal == 0)
-            {
-                cout << "\nDeleted item with string id \"" << stringTmp
-                     << "\" and key " << key << "\n";
-            }
+    //         if (retVal == 0)
+    //         {
+    //             cout << "\nDeleted item with string id \"" << stringTmp
+    //                  << "\" and key " << key << "\n";
+    //         }
 
-            break;
+    //         break;
 
-        case 4:
-            // Perform the deleteMin operation on the heap
+    //     case 4:
+    //         // Perform the deleteMin operation on the heap
 
-            retVal = myHeap1.deleteMin(&stringTmp, &key);
-            cout << "\nCall to 'deleteMin' returned: " << retVal << "\n";
+    //         retVal = myHeap1.deleteMin(&stringTmp, &key);
+    //         cout << "\nCall to 'deleteMin' returned: " << retVal << "\n";
 
-            if (retVal == 0)
-            {
-                cout << "\nDeleted item with string id \"" << stringTmp
-                     << "\" and key " << key << "\n";
-            }
+    //         if (retVal == 0)
+    //         {
+    //             cout << "\nDeleted item with string id \"" << stringTmp
+    //                  << "\" and key " << key << "\n";
+    //         }
 
-            break;
+    //         break;
 
-        case 5:
-            cout << "\nGoodbye!\n";
-            exit(0);
+    //     case 5:
+    //         cout << "\nGoodbye!\n";
+    //         exit(0);
 
-        default:
-            cerr << "Error, that input is not valid!\n";
-            exit(1);
-        }
-    }
+    //     default:
+    //         cerr << "Error, that input is not valid!\n";
+    //         exit(1);
+    //     }
+    // }
 
-    cerr << "Error, we should never get here!\n";
-    exit(1);
+    // cerr << "Error, we should never get here!\n";
+    // exit(1);
 }

@@ -4,11 +4,14 @@
 
 class heap
 {
+public:
     //
     // heap - The constructor allocates space for the nodes of the heap
     // and the mapping (hash table) based on the specified capacity
     //
     heap(int capacity);
+
+    void print();
 
     //
     // insert - Inserts a new node into the binary heap
@@ -65,6 +68,9 @@ class heap
     //
     int remove(const std::string &id, int *pKey = nullptr, void *ppData = nullptr);
 
+    void percolateUp(int hole);
+    void percolateDown(int hole);
+
 private:
     class node
     {
@@ -72,10 +78,11 @@ private:
         std::string id;
         int key;
         void *pData;
+        int index;
     };
 
     int capacity;
-    int currentSize;
+    int currentSize {0};
     std::vector<node> data;
     hashTable map;
 };
