@@ -28,7 +28,7 @@ int hashTable::insert(const std::string &key, void *pv)
 
     while (this->data[index].isOccupied)
     {
-        if (this->data[index].key == key)
+        if (this->data[index].key == key && !this->data[index].isDeleted)
         {
             return 2;
         }
@@ -46,7 +46,7 @@ int hashTable::insert(const std::string &key, void *pv)
     this->data[index].key = key;
     this->data[index].isOccupied = true;
     this->data[index].pv = pv;
-
+    this->data[index].isDeleted = false;
     this->filled++;
 
     return 0;
@@ -106,7 +106,7 @@ int hashTable::findPos(const std::string &key)
 {
     int index = this->hash(key);
 
-    while (this->data[index].isOccupied || !this->data[index].isDeleted)
+    while (this->data[index].isOccupied)
     {
         if (this->data[index].key == key && !this->data[index].isDeleted)
         {

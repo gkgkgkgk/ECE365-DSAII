@@ -70,6 +70,7 @@ public:
 
     void percolateUp(int hole);
     void percolateDown(int hole);
+    void checkAlignment();
 
 private:
     class node
@@ -82,7 +83,7 @@ private:
     };
 
     int capacity;
-    int currentSize {0};
+    int currentSize{0};
     std::vector<node> data;
     hashTable map;
 };
