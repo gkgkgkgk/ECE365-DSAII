@@ -27,6 +27,7 @@ int heap::insert(const std::string &id, int key, void *pv)
     int hole = ++this->currentSize;
     this->data[hole].id = id;
     this->data[hole].key = key;
+    this->data[hole].pData = pv;
 
     this->map.insert(id, &data[hole]);
 
@@ -36,6 +37,7 @@ int heap::insert(const std::string &id, int key, void *pv)
 
 void heap::percolateUp(int hole)
 {
+    void * pData = this->data[hole].pData;
     int key = this->data[hole].key;
     std::string id = this->data[hole].id;
 
@@ -54,6 +56,7 @@ void heap::percolateUp(int hole)
     this->data[hole].key = key;
     this->data[hole].id = id;
     this->data[hole].index = hole;
+    this->data[hole].pData = pData;
     this->map.setPointer(this->data[hole].id, &this->data[hole]);
 }
 
@@ -74,7 +77,7 @@ int heap::deleteMin(std::string *pId, int *pKey, void *ppData)
     }
     if (ppData != nullptr)
     {
-        ppData = this->data[1].pData;
+        *(static_cast<void **> (ppData)) = data[1].pData;
     }
 
     this->map.remove(this->data[1].id);
@@ -86,6 +89,7 @@ int heap::deleteMin(std::string *pId, int *pKey, void *ppData)
 
 void heap::percolateDown(int hole)
 {
+    void * pData = this->data[hole].pData;
     heap::node tmp = this->data[hole];
     int child;
 
@@ -112,6 +116,7 @@ void heap::percolateDown(int hole)
 
     this->data[hole] = tmp;
     this->data[hole].index = hole;
+    this->data[hole].pData = pData;
     this->map.setPointer(this->data[hole].id, &this->data[hole]);
 }
 
@@ -166,7 +171,6 @@ void heap::print()
 {
     for (int i = 1; i <= this->currentSize; i++)
     {
-        // cout << this->data[i].id << " " << this->data[i].key << this->map.getPointer(this->data[i].id) << endl;
         heap::node *n = (heap::node *)this->map.getPointer(this->data[i].id);
         cout << this->data[i].key << this->data[i].id << " " << n->id << " " << endl;
     }
@@ -176,14 +180,24 @@ void heap::checkAlignment()
 {
     for (int i = 1; i <= this->currentSize; i++)
     {
-        // cout << this->data[i].id << " " << this->data[i].key << this->map.getPointer(this->data[i].id) << endl;
         heap::node *n = (heap::node *)this->map.getPointer(this->data[i].id);
         if (this->data[i].key != n->key)
         {
             cout << "Alignment error" << endl;
             exit(1);
         }
-
-        //cout << this->data[i].key << this->data[i].id << " " << n->id << " " << endl;
     }
+}
+
+void * heap::getPointer(const string &name, bool * found){
+    return this->map.getPointer(name, found);
+} 
+
+int heap::getKey(const string &name, bool * found){
+    node *n = (node *)this->map.getPointer(name, found);
+    return * found ? n-> key : -1;
+}
+
+int heap::getCurrentSize(){
+    return this->currentSize;
 }

@@ -71,6 +71,9 @@ public:
     void percolateUp(int hole);
     void percolateDown(int hole);
     void checkAlignment();
+    void *getPointer(const std::string &name, bool *found = nullptr);
+    int getKey(const std::string &name, bool *found);
+    int getCurrentSize();
 
 private:
     class node

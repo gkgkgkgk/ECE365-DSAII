@@ -112,10 +112,6 @@ int hashTable::findPos(const std::string &key)
         {
             return index;
         }
-        if (!this->data[index].isOccupied)
-        {
-            return -1;
-        }
 
         if (index >= this->capacity - 1)
         {
