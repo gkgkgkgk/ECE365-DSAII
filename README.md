@@ -5,3 +5,7 @@ Projects for Data Structures and Algorithms II at The Cooper Union
 Implementing a hash table and using it for a spell checker.
 
 ### Project 2- Heap
+Implmenting a heap based on the hash table from the previous project.
+
+### Project 3- Dijkstra's Algorithm
+Implementing Dijkstra on a graph based on the heap from the previous project.
